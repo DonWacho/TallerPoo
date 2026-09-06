@@ -1,5 +1,9 @@
 package taller1;
+/*
+Nicolas Porras - 21591707-K - ITI
+Fernando Garcia - 21836966-9 - ITI
 
+*/
 import java.io.*;
 import java.util.*;
 
@@ -7,12 +11,78 @@ public class Taller1 {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
+		
+		
 		Scanner teclado = new Scanner(System.in);
 		
 		
 		imprimir();
 		
-		int op = Integer.valueOf(teclado.nextLine());
+		
+		
+		
+		
+		String op = teclado.nextLine();
+		System.out.println();
+		switch (op) {
+		case "1":
+			
+			try {
+				
+				cargarAlumn();
+				cargarSoli();
+				
+				
+				
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				
+				System.out.println("archivo inexistente");
+			}
+			
+			break;
+		
+		case "2":
+			try {
+				
+				procesarSoli();
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("sin archivos");
+			}
+			
+			break;
+			
+		case "3":
+			
+			break;
+			
+			
+		case "4":
+			
+			break;
+			
+		case "5":
+			
+			break;
+			
+		case "6":
+			
+			break;
+			
+		
+		default:
+			
+			System.out.println("ERROR");
+			
+			
+			break;
+		}
+		
+		
+		
+		
 		
 		
 		
@@ -31,7 +101,7 @@ public class Taller1 {
 	}
 	
 	
-	public static boolean imprimir() {
+	public static void imprimir() {
 		
 		
 		System.out.println("==== Sistema de Control del Grupo POO ==");
@@ -44,56 +114,128 @@ public class Taller1 {
 		System.out.println("7) Salir");
 		System.out.print("> ");
 		
-		return false;
+		
 	}
 	
-	/*public static boolean opciones(int op) throws FileNotFoundException {
+	public static void cargarSoli() throws IOException {
+		int i = 0;
+		File arch = new File("txt/Solicitudes.txt");
+		Scanner lector = new Scanner(arch);
+		
+		while (lector.hasNextLine()) {
+			
+			String line = lector.nextLine();
+			String[] part = line.split("-");
+			
+			String name = part[0];
+			String apellido = part[1];
+			
+			i++;
+			
+		}
+		
+		System.out.println(i+ " Solicitudes de ingreso.");
 		
 		
+	}
+	
+	public static void cargarAlumn() throws IOException{
+		int i = 0;
+		File arch = new File("txt/Alumnos.txt");
+		Scanner lector = new Scanner(arch);
+		
+		
+		
+		while (lector.hasNextLine()) {
+			
+			String line = lector.nextLine();
+			String[] part = line.split(";");
+			
+			String name = part[0];
+			String apellido = part[1];
+			String rut = part[2];
+			String paralelo = part[3];
+			
+			i++;
+			
+			
+		}
+		System.out.println("Carga exitosa");
+		System.out.println(i+" alumnos en la lista.");
+		
+		lector.close();
+		
+	}
 
-		switch (op) {
-		case 1:
+
+	public static void procesarSoli() throws IOException{
+		
+		
+		String[] rechazados = new String[50];
+		String[] aceptados = new String[50];
+		
+		File arch = new File("txt/Solicitudes.txt");
+		File arch2 = new File("txt/Alumnos.txt");
+		Scanner lector = new Scanner(arch);
+		Scanner lector2 = new Scanner(arch2);
+		
+		int j = 0;
+		int h = 0;
+		
+		while (lector.hasNextLine()) {
 			
-			File alumnos = new File("../GitHub/TallerPoo/taller1/Alumnos.txt");
+			String line = lector.nextLine();
+			String[] part = line.split("-");
+			String name = part[0];
+			String apellido = part[1];
 			
-			File registros = new File("../GitHub/TallerPoo/taller1/Registros.txt"); 
-			Scanner lector = new Scanner(alumnos);
-			Scanner lector2 = new Scanner(registros);
 			
-			while (lector.hasNextLine()) {
+			while (lector2.hasNextLine()) {
 				
-				String linea = lector.nextLine();
+				String line2 = lector2.nextLine();
+				String[] part2 = line2.split(";");
+				String name2 = part2[0];
+				String apellido2 = part2[1];
+				String paralelo = part2[3];
 				
-				System.out.println("line: ´"+ linea+"´");
 				
+				if(name.equals(name2) && apellido.equals(apellido2)) {
+					//System.out.println("hola0");
+					
+					aceptados[j] = name + " "+ apellido ;
+					System.out.println("[OK]	"+name + " " + apellido +" -> admitido en " + paralelo);
+					j++;
+					
+					break;
+					
+					
+					
+				} else if(name.equalsIgnoreCase(null)){
+					
+					rechazados[h] = name + " " + apellido;
+					System.out.println("hola1");
+					h++;
+					//break;
+					
+				}
+				
+				
+			
 			}
 			
 			
-			break;
-
-		case 2:
 			
 			
-			
-			break;
-			
-			
-		case 3:
-			
-			break;
-			
-			
-			
-		case 4:
-			break;
 		}
+			
+		
+			                                
 		
 		
-		
-		
-		
-		
-		return false;
-	} */
+	}
+	
+	
+	
+	
 
 }
