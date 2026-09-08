@@ -24,61 +24,78 @@ public class Taller1 {
 		
 		String op = teclado.nextLine();
 		System.out.println();
-		switch (op) {
-		case "1":
+		
+		while (op != "7") {
 			
-			try {
+			
+			switch (op){
+			case "1":
 				
-				cargarAlumn();
-				cargarSoli();
+				try {
+					
+					cargarAlumn();
+					cargarSoli();
+
+				} catch (Exception e) {
+					// TODO: handle exception
+					
+					System.out.println("archivo inexistente");
+				}
+				
+				break;
+			
+			case "2":
+				try {
+					
+					procesarSoli();
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("sin archivos");
+				}
+				
+				break;
+				
+			case "3":
+				
+				break;
 				
 				
+			case "4":
+				
+				break;
+				
+			case "5":
+				
+				break;
+				
+			case "6":
+				
+				break;
+				
+			case "7":
 				
 				
-			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println("saliendo...");
+				break;
 				
-				System.out.println("archivo inexistente");
+			default:
+				
+				System.out.println("ERROR");
+				
+				
+				break;
+				
+			
+			
+			
 			}
 			
-			break;
-		
-		case "2":
-			try {
-				
-				procesarSoli();
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("sin archivos");
-			}
-			
-			break;
-			
-		case "3":
-			
-			break;
+			imprimir();
+			op = teclado.nextLine();
 			
 			
-		case "4":
-			
-			break;
-			
-		case "5":
-			
-			break;
-			
-		case "6":
-			
-			break;
-			
-		
-		default:
-			
-			System.out.println("ERROR");
-			
-			
-			break;
 		}
+		
 		
 		
 		
@@ -196,13 +213,14 @@ public class Taller1 {
 				String[] part2 = line2.split(";");
 				String name2 = part2[0];
 				String apellido2 = part2[1];
+				String rut = part2[2];
 				String paralelo = part2[3];
 				
 				
 				if(name.equals(name2) && apellido.equals(apellido2)) {
 					//System.out.println("hola0");
 					
-					aceptados[j] = name + " "+ apellido ;
+					aceptados[j] = name + " " + apellido + " " +rut + " " + paralelo;
 					System.out.println("[OK]	"+name + " " + apellido +" -> admitido en " + paralelo);
 					j++;
 					
@@ -210,12 +228,13 @@ public class Taller1 {
 					
 					
 					
-				} else if(name.equalsIgnoreCase(null)){
+				} else if(!name.equals(name2) && !apellido.equals(apellido2)){
 					
 					rechazados[h] = name + " " + apellido;
-					System.out.println("hola1");
+					System.out.println("[Rechazado]	"+name + " " + apellido +" -> no pertenece a ningun paralelo ");
+					//System.out.println("hola1");
 					h++;
-					//break;
+					break;
 					
 				}
 				
