@@ -15,17 +15,17 @@ public class Taller1 {
 		
 		Scanner teclado = new Scanner(System.in);
 		
-		
-		imprimir();
-		
+		int x = 0;
 		
 		
 		
 		
-		String op = teclado.nextLine();
-		System.out.println();
 		
-		while (op != "7") {
+		do{
+			imprimir();
+			
+			String op = teclado.nextLine();
+			System.out.println();
 			
 			
 			switch (op){
@@ -74,7 +74,7 @@ public class Taller1 {
 				
 			case "7":
 				
-				
+				x++;
 				System.out.println("saliendo...");
 				break;
 				
@@ -85,25 +85,17 @@ public class Taller1 {
 				
 				break;
 				
-			
-			
-			
 			}
 			
-			imprimir();
-			op = teclado.nextLine();
+				
 			
 			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		//opciones(op);
+			
+			
+			
+			
+			
+			
 		
 		
 		
@@ -115,7 +107,9 @@ public class Taller1 {
 		
 		
 
+		} while (x==0);
 	}
+	
 	
 	
 	public static void imprimir() {
