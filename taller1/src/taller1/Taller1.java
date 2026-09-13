@@ -62,6 +62,13 @@ public class Taller1 {
 				
 			case "4":
 				
+				try {
+					adminCurso();
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("no se encontró archivos");
+				}
+				
 				break;
 				
 			case "5":
@@ -109,6 +116,9 @@ public class Taller1 {
 
 		} while (x==0);
 	}
+	
+	
+	
 	
 	
 	
@@ -240,14 +250,90 @@ public class Taller1 {
 			
 			
 		}
-			
-		
-			                                
-		
 		
 	}
 	
-	
+	public static void adminCurso() throws IOException{
+		
+		System.out.println("--- Administracion deel curso ---");
+		System.out.println("1) Cambiar paralelo de un alumno");
+		System.out.println("2) Eliminar alumno del curso");
+		System.out.println("3) Inscribir alumno nuevo");
+		System.out.println("4) Volver");
+		System.out.print("> ");
+		
+		Scanner teclado = new Scanner(System.in);
+		int op = Integer.valueOf(teclado.nextLine());
+		System.out.println();
+		int y = 0;
+		
+		do {
+			switch (op) {
+			case 1:
+				System.out.print("Ingrese RUT del alumno: ");
+				String r = teclado.nextLine();
+				
+				
+				
+				
+				try (BufferedReader br = new BufferedReader(new FileReader("txt/Alumnos.txt"));
+					BufferedWriter bw = new BufferedWriter(new FileWriter("txt/Alumnos.txt"))){
+					
+						String Line;
+						int z = 0;
+						while ((Line = br.readLine()) != null || (z == 0)) {
+							
+							String[] part = Line.split(";");
+							String nombre = part[0];
+							String apellido = part[1];
+							String RUT = part[2];
+							String paralelo = part[3];
+							
+							if (r.equals(RUT)) {
+								
+								System.out.println("Alumno; "+ nombre + " " + apellido + "actualmente en " + paralelo + ")");
+								
+								z++;
+							}
+							
+							
+						}
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println("archivo inexistente");
+				}
+				
+				
+				
+				break;
+				
+			case 2:
+				
+				
+				break;
+			case 3:
+				
+				
+				
+				break;
+				
+				
+			case 4:
+				
+				y++;
+				break;
+			}
+		} while (y == 0);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 	
 	
 
